@@ -1,0 +1,1 @@
+sudo ovs-ofctl --protocols=OpenFlow15 dump-ports br0

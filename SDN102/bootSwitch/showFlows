@@ -1,0 +1,2 @@
+#!/bin/bash
+ovs-ofctl -O openflow14 dump-flows br0
