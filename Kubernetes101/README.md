@@ -17,5 +17,17 @@ And then, you can add this output to Environment="KUBELET_NETWORK_ARGS in the /e
 --cgroup-driver=cgroupfs
 ```
 
+## Initialise the Master and passing a Pod Network CIDR
+Run the folling script at the Kubernetes master node:
+
+```bash
+swapoff
+
+kubeadm init --pod-network-cidr=192.168.0.0/16
+```
+
+## Add worker nodes to the cluster
+In this example, we have saved the scripts you need to execute in each of the worker nodes. You may find it in this same directory under the name join.nodes.
+
 [official link]: https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
