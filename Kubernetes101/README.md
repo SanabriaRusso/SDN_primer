@@ -29,5 +29,18 @@ kubeadm init --pod-network-cidr=192.168.0.0/16
 ## Add worker nodes to the cluster
 In this example, we have saved the scripts you need to execute in each of the worker nodes. You may find it in this same directory under the name join.nodes.
 
+## ClusterRoleBinding to enable a free-access Dashboard
+In this file we have written a ClusterRoleBinding for disabling authentication for the Dashboard. You might see it by:
+
+```bash
+kubectl get clusterrolebindings
+```
+
+And then once identified, you can erase it by:
+
+```bash
+kubect delete clusterrolebindings <name>
+```
+
 [official link]: https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
