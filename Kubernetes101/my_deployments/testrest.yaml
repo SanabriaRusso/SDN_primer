@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test
+  namespace: test
+  labels:
+    run: test
+spec:
+  type: NodePort
+  ports:
+    - port: 5200
+      targetPort: 5200
+      protocol: TCP
+      name: flask-port
+  selector:
+    run: test
+  externalIPs: ["10.1.2.153"]
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      run: test
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: test
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "kubernetes.io/hostname"
+                operator: In
+                values: ["nuc3m2m"]
+      containers:
+        - name: test
+          image: sanabriarusso/testrest:latest
+          imagePullPolicy: Always
+          securityContext:
+            privileged: False
+          ports:
+            - containerPort: 5200
+              name: flask-port
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "2"
+            requests:
+              memory: "100Mi"
+              cpu: "1"

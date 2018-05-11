@@ -42,5 +42,13 @@ And then once identified, you can erase it by:
 kubect delete clusterrolebindings <name>
 ```
 
+# Multiplatform Kubernetes Cluster (amd64/arm)
+There is a problem when combining arm64 and amd architectures in your Kubernetes Cluster. Mainly, the kube-proxy pod sets the architecture type to that of the Master node. So, when joining an arm-node, like the Raspberry, you will get an error.
+
+You can follow [the multiplaform cluster setup] link in order to solve this problem.
+
+
 [official link]: https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+
+[the multiplaform cluster setup]: https://gist.github.com/squidpickles/dda268d9a444c600418da5e1641239af
 

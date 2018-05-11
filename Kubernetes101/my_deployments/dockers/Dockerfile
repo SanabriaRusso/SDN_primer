@@ -1,4 +1,4 @@
-FROM python:2.7-14-slim
+FROM python:2.7-slim
 
 WORKDIR /app
 
@@ -9,5 +9,4 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 5200
 
-CMD ["pyton", "testRest.py"]
-
+CMD ["python", "testRest.py"]
